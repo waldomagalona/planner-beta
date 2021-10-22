@@ -1,0 +1,26 @@
+<div class="flex flex-col items-center justify-center min-h-screen">
+<p>
+  <b>Name:</b>
+  <%= @task.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @task.description %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @task.status %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @category.name %>
+</p>
+
+<div>
+<%= link_to 'Edit', edit_category_task_path(@task.category, @task) %> |
+<%= link_to 'Back', category_tasks_path(@task.category) %>
+</div>
+</div>

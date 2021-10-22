@@ -1,0 +1,89 @@
+<div class= "flex-row flex-wrap w-screen content-center text-center justify-center">
+      <div class="text-xl text-indigo-500">
+        <p>
+          <strong>Category Name:</strong>
+          <%= @category.name %>
+        </p>
+
+        <p>
+          <strong>Description:</strong>
+          <%= @category.description %>
+        </p>
+
+        <p>
+          <strong>User:</strong>
+          <%= current_user.email %>
+        </p>
+      </div>
+      <div class="text-center py-2">
+        <%= link_to 'Edit', edit_category_path(@category), class: "py-1 pl-5 pr-5 bg-transparent border-2 text-indigo-500 border-indigo-500 text-lg rounded-lg hover:bg-indigo-500 hover:text-white focus:border-4" %> 
+        <%= link_to 'Back', categories_path, class: "py-1 pl-5 pr-5 bg-transparent border-2 text-indigo-500 border-indigo-500 text-lg rounded-lg hover:bg-indigo-500 hover:text-white focus:border-4" %>
+      </div>
+      <br>
+  <hr>
+    <div class="w-screen">
+      <p class= "py-2 text-lg text-center font-bold text-indigo-500">Create a New task</p>
+      <%= render 'tasks/form' %>
+    </div>
+  <hr>
+  <% if @category.tasks.length == 1 %>
+      <p class= "py-2 text-lg text-center font-bold text-indigo-500"> No Pending tasks for today</p>
+    <% elsif @category.tasks.length == 2 %>
+      <p class= "py-2 text-lg text-center font-bold text-indigo-500"> Task to do today</p>
+    <% else %>
+      <p class= "py-2 text-lg text-center font-bold text-indigo-500"> Tasks to do today</p> 
+  <% end %>
+<%#   <div class="flex flex-row py-3 items-center">
+    <div class="px-3">
+    Show tasks for today
+    </div>
+    <div class="flex justify-center items-center" x-data="{toggle: '0'}">
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+      <div class="relative rounded-full w-12 h-6 transition duration-200 ease-linear"
+          :class="[toggle === '1' ? 'bg-indigo-400' : 'bg-gray-400']">
+        <label for="toggle"
+              class="absolute left-0 bg-white border-2 mb-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer"
+              :class="[toggle === '1' ? 'translate-x-full border-indigo-400' : 'translate-x-0 border-gray-400']"></label>
+        <input type="checkbox" id="toggle" name="toggle"
+              class="appearance-none w-full h-full active:outline-none focus:outline-none"
+              @click="toggle === '0' ? toggle = '1' : toggle = '0'"/>
+      </div>
+    </div>
+  </div> %>
+  <% if @category.tasks.length > 1 %>
+        <% @category.tasks.each do |task| %>
+     <% if task.persisted? %>
+      <div class="flex flex-col w-screen space-y-2 w-full justify-center">
+        <div class="py-5 w-6/12 bg-indigo-500 flex flex-col space-y-5 mx-auto rounded-3xl shadow-xl hover:rotate-1 transition-transform text-center justify-center">
+          <div class=" font-medium font-bold text-white text-xl tracking-wide text-center"><%= task.name %></div>
+          <div class="text-base tracking-wide text-white text-center"><%= task.description %></div>
+          <div class="text-base tracking-wide text-white text-center"><%= task.date %></div>
+            <div class="flex text-center justify-center">
+              <%if task.status == 'not-started'%>
+                <h3 class="p-2 pl-5 pr-5 bg-red-500 w-max text-gray-100 text-lg rounded-lg"><%= task.status %></h3>
+              <%else%>
+                <h3 class="p-2 pl-5 pr-5 bg-green-500 w-max text-gray-100 text-lg rounded-lg"><%= task.status %></h3>
+              <%end%>              
+            </div>
+            <div class="flex flex-row justify-center space-x-2">
+                <div class=""><%= link_to 'Show', [task.category, task], class: "py-1 pl-5 pr-5 bg-transparent border-2 text-white border-white-500 text-lg rounded-lg hover:bg-white hover:text-indigo-500 focus:border-4"%></div>
+                <div class=""><%= link_to 'Edit', edit_category_task_path(task.category, task), class: "py-1 pl-5 pr-5 bg-transparent border-2 text-white border-white-500 text-lg rounded-lg hover:bg-white hover:text-indigo-500 focus:border-4" %></div>
+                <div class=""><%= link_to 'Delete', [task.category, task], method: :delete, data: { confirm: 'Are you sure?' }, class: "py-1 pl-5 pr-5 bg-transparent border-2 text-white border-white-500 text-lg rounded-lg hover:bg-white hover:text-indigo-500 focus:border-4" %></div>
+            </div>
+        </div>
+        <% end %>
+      <% end %>
+<%#   <table class= "py-4 text-base text-center font-bold">
+    <tr>
+      <th class="py-2 px-4">Task Name</th>
+      <th class="py-2 px-4">Description</th>
+      <th class="py-2 px-4">Category</th>
+      <th class="py-2 px-4">Date</th>
+      <th class="py-2 px-4">Status</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr> %>
+
+  <%end%>
+</div>

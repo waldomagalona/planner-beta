@@ -1,0 +1,31 @@
+<div class="flex flex-col text-center w-full justify-center">
+<%= form_with(model: category) do |form| %>
+  <% if category.errors.any? %>
+    <div class = "text-red-500 text-center font-bold">
+      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+        <% category.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="py-4">
+    <%= form.label :name, class: "font-bold size-lg" %><br>
+    <%= form.text_field :name, 
+    class: "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-72 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" %>
+  </div>
+
+  <div class="py-4">
+    <%= form.label :description, class: "font-bold size-lg" %><br>
+    <%= form.text_area :description,
+    class: "bg-gray-200 appearance-none border-2 resize-none border-gray-200 rounded w-72 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" %>
+  </div>
+
+  <div class="py-4">
+    <%= form.submit :Submit, class:"w-72 text-center py-2 text-white font-bold bg-indigo-500 rounded-md hover:bg-indigo-900 text-white" %>
+  </div>
+<% end %>
+</div>

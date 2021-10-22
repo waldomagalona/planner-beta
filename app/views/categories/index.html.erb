@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class= "flex justify-center content-center flex-col items-center">
+  <div class="py-4 text-lg text-center font-bold">
+  <div class="text-indigo-500 py-3 text-4xl">Categories</div>
+  <div class="py-5">
+    <%= link_to '+ New Category', new_category_path, class: "py-1 pl-5 pr-5 bg-transparent border-2 text-indigo-500 border-indigo-500 text-lg rounded-lg hover:bg-indigo-500 hover:text-white focus:border-4" %>
+  </div>
+  </div>
+  <div>
+      <% @categories.each do |category| %>
+        <div class="flex flex-col w-screen space-y-2 w-full justify-center">
+          <div class="py-5 w-6/12 bg-indigo-500 flex flex-col space-y-5 mx-auto rounded-3xl shadow-xl hover:rotate-1 transition-transform text-center justify-center">
+            <div class="font-medium font-bold text-white text-xl tracking-wide text-center"><%= category.name %></div>
+            <div class="text-base tracking-wide text-white text-center"><%= category.description %></div>
+            <div class="text-base tracking-wide text-white text-center">Created by: <%= current_user.email %></div>
+              <div class="flex flex-row justify-center space-x-2">
+                  <div class=""><%= link_to 'Show', category, class:"py-1 pl-5 pr-5 bg-transparent border-2 text-white border-white-500 text-lg rounded-lg hover:bg-white hover:text-indigo-500 focus:border-4" %></div>
+                  <div class=""><td><%= link_to 'Edit', edit_category_path(category), class:"py-1 pl-5 pr-5 bg-transparent border-2 text-white border-white-500 text-lg rounded-lg hover:bg-white hover:text-indigo-500 focus:border-4" %></div>
+              </div>
+          </div>
+        <% end %>
+  </div>
+  <br>
+</div>

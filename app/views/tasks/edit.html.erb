@@ -1,0 +1,13 @@
+<div class= "flex flex-wrap justify-center content-center flex-col">
+  <div class="py-4 text-lg text-center font-bold">
+      <div class="font-bold text-2xl text-indigo-500">Edit Task</div>
+      <br>
+      <hr>
+    <%= render 'form' %>
+
+      <div>
+          <%= link_to 'Show', [@task.category, @task], class: "py-1 pl-5 pr-5 bg-transparent border-2 text-indigo-500 border-indigo-500 text-lg rounded-lg hover:bg-indigo-500 hover:text-white focus:border-4" %> 
+          <%= link_to 'Back', category_tasks_path(@task.category), class: "py-1 pl-5 pr-5 bg-transparent border-2 text-indigo-500 border-indigo-500 text-lg rounded-lg hover:bg-indigo-500 hover:text-white focus:border-4" %>
+      </div>
+  </div>
+</div>

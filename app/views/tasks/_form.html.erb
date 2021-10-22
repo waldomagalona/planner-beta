@@ -1,0 +1,37 @@
+<div class="flex flex-col text-center w-full justify-center">
+<%= form_with(model: [@task.category, @task]) do |f| %>
+  <% if @task.errors.any? %>
+    <div class = "text-red-500 text-center font-bold">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :name , class: "font-bold size-lg"%><br />
+      <%= f.text_field :name,
+      class: "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-72 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" %>
+    </div>
+    <div class="field">
+      <%= f.label :description, class: "font-bold size-lg" %><br />
+      <%= f.text_area :description, 
+      class: "bg-gray-200 appearance-none border-2 resize-none border-gray-200 rounded w-72 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" %>
+    </div>
+    <div class="field">
+      <%= f.label :status, class: "font-bold size-lg" %><br />
+      <%= f.select :status, Task::STATUS_OPTIONS %>
+    </div>
+    <div class="py-4 font-bold">
+      Date:
+      <%= f.date_field :date, "data-provide" => 'datepicker' %>
+    </div>
+    <div class="py-4">
+      <%= f.submit :Submit, class: "w-72 text-center py-2 text-white font-bold bg-indigo-500 rounded-md hover:bg-indigo-900 text-white" %>
+    </div>
+  
+<% end %>
+</div>
