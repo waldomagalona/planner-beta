@@ -26,9 +26,10 @@
       <%= render 'tasks/form' %>
     </div>
   <hr>
-  <% if @category.tasks.length == 1 %>
+  <br>
+  <% if @tasks_due_today.length == 0 %>
       <p class= "py-2 text-lg text-center font-bold text-indigo-500"> No Pending tasks for today</p>
-    <% elsif @category.tasks.length == 2 %>
+    <% elsif @tasks_due_today.length == 1 %>
       <p class= "py-2 text-lg text-center font-bold text-indigo-500"> Task to do today</p>
     <% else %>
       <p class= "py-2 text-lg text-center font-bold text-indigo-500"> Tasks to do today</p> 
@@ -50,8 +51,8 @@
       </div>
     </div>
   </div> %>
-  <% if @category.tasks.length > 1 %>
-        <% @category.tasks.each do |task| %>
+  <% if @tasks_due_today.length > 0 %>
+        <% @tasks_due_today.each do |task| %>
      <% if task.persisted? %>
       <div class="flex flex-col w-screen space-y-2 w-full justify-center">
         <div class="py-5 w-6/12 bg-indigo-500 flex flex-col space-y-5 mx-auto rounded-3xl shadow-xl hover:rotate-1 transition-transform text-center justify-center">
@@ -73,17 +74,8 @@
         </div>
         <% end %>
       <% end %>
-<%#   <table class= "py-4 text-base text-center font-bold">
-    <tr>
-      <th class="py-2 px-4">Task Name</th>
-      <th class="py-2 px-4">Description</th>
-      <th class="py-2 px-4">Category</th>
-      <th class="py-2 px-4">Date</th>
-      <th class="py-2 px-4">Status</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr> %>
-
   <%end%>
+</div>
+<div class="py-5">
+<%= link_to 'View All Tasks', category_tasks_path(@task.category), class: "py-1 pl-5 pr-5 w-full bg-indigo-500 border-2 text-white border-indigo-500 text-lg rounded-lg hover:bg-indigo-800 hover:text-white focus:border-4" %>
 </div>

@@ -1,26 +1,18 @@
-<div class="flex flex-col items-center justify-center min-h-screen">
-<p>
-  <b>Name:</b>
-  <%= @task.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @task.description %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @task.status %>
-</p>
-
-<p>
-  <b>Category:</b>
-  <%= @category.name %>
-</p>
-
-<div>
-<%= link_to 'Edit', edit_category_task_path(@task.category, @task) %> |
-<%= link_to 'Back', category_tasks_path(@task.category) %>
-</div>
-</div>
+<br>
+      <div class="flex flex-col w-screen space-y-5 w-full justify-center">
+        <div class="py-5 w-6/12 bg-indigo-500 flex flex-col space-y-5 mx-auto rounded-3xl shadow-xl hover:rotate-1 transition-transform text-center justify-center">
+          <div class=" font-medium font-bold text-white text-xl tracking-wide text-center"><%= @task.name %></div>
+          <div class="text-base tracking-wide text-white text-center"><%= @task.description %></div>
+          <div class="text-base tracking-wide text-white text-center"><%= @task.date %></div>
+            <div class="flex text-center justify-center">
+              <%if @task.status == 'not-started'%>
+                <h3 class="p-2 pl-5 pr-5 bg-red-500 w-max text-gray-100 text-lg rounded-lg"><%= @task.status %></h3>
+              <%else%>
+                <h3 class="p-2 pl-5 pr-5 bg-green-500 w-max text-gray-100 text-lg rounded-lg"><%= @task.status %></h3>
+              <%end%>              
+            </div>
+            <div class="flex flex-row justify-center space-x-2">
+                <div class=""><%= link_to 'Edit', edit_category_task_path(@task.category, @task), class: "py-1 pl-5 pr-5 bg-transparent border-2 text-white border-white-500 text-lg rounded-lg hover:bg-white hover:text-indigo-500 focus:border-4" %></div>
+                <div class=""><%= link_to 'Back', category_tasks_path(@task.category), class: "py-1 pl-5 pr-5 bg-transparent border-2 text-white border-white-500 text-lg rounded-lg hover:bg-white hover:text-indigo-500 focus:border-4" %></div>
+            </div>
+        </div>

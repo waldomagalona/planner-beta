@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   # GET categories/1/tasks
   def index
     @tasks = @category.tasks
-    @tasks_today = @tasks.where("date >= ? and date < ?", Date.current, Date.current+1).order("date, category_id")
+    @tasks_due_today = Task.where(date: Date.today).where(category_id: @category.id).order("date ASC").order("category_id ASC")
   end
 
   # GET categories/1/tasks/1
