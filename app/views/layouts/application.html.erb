@@ -34,7 +34,6 @@
         </div>
       </div>
 
-      <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
       <div class="items-center md:flex">
         <div class="flex flex-col md:flex-row md:mx-6">
           <a
@@ -42,6 +41,7 @@
             >
                 <% if user_signed_in? %>
                   <div class = "py-2 flex flex-column text-center font-semibold text-white">Logged in as: <div class="font-bold px-2"><%= current_user.email %></div></div>
+                <%= link_to 'Edit Profile', edit_user_registration_path, class:"py-1 pl-5 pr-5 bg-transparent border-2 text-white border-white-500 text-lg rounded-lg hover:bg-white hover:text-indigo-500 focus:border-4" %>
                 <%= link_to "Logout", 
                 destroy_user_session_path, 
                 method: :delete,
